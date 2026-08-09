@@ -1,0 +1,22 @@
+{
+  "onboarding_source": [
+    {
+      "title": "STREAM-LIB 官方",
+      "type": "Official lines",
+      "desc": "官方线路目录，一键导入 8 条精选影视线路",
+      "url": "https://raw.githubusercontent.com/talentneo/STREAM-LIB-REPO/refs/heads/main/stream-lib-cat.json"
+    },
+    {
+      "title": "STREAM-LIB 官方 2 ",
+      "type": "Official lines",
+      "desc": "官方线路目录，一键导入 8 条精选影视线路",
+      "url": "https://raw.githubusercontent.com/talentneo/STREAM-LIB-REPO/refs/heads/main/stream-lib-dog.json"
+    },
+    {
+      "title": "Gather 直播",
+      "type": "IPTV Live",
+      "desc": "中文 IPTV 直播（央视/卫视/地方台），含 EPG 节目单",
+      "url": "https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u"
+    }
+  ]
+}
