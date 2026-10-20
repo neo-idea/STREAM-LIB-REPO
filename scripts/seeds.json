@@ -1,0 +1,9 @@
+{
+  "seeds": [
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/xmbjm/svip/refs/heads/main/svip.json",
+      "name": "svip线路",
+      "comment": "已知配置。种子自身作为候选，并从内容中提取其它配置链接。可自由增删 seed：url 必填，name 可选（作为该 url 的固定线路名）。"
+    }
+  ]
+}

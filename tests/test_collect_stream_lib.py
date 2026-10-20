@@ -137,5 +137,28 @@ class TestRenderOutput(unittest.TestCase):
         )
 
 
+class TestLoadSeeds(unittest.TestCase):
+    def test_reads_seeds_file(self):
+        seeds = csl.load_seeds()
+        self.assertIsInstance(seeds, list)
+        self.assertTrue(all("url" in s for s in seeds))
+
+
+class TestValidateCandidates(unittest.TestCase):
+    def test_validates_and_skips_failures(self):
+        good = b'{"sites": [], "spider": "x"}'
+        candidates = {
+            "https://a.com/good.json": {"url": "https://a.com/good.json"},
+            "https://a.com/bad.json": {"url": "https://a.com/bad.json"},
+        }
+        original = csl.fetch
+        try:
+            csl.fetch = lambda url: good if "good" in url else None
+            results = csl.validate_candidates(candidates)
+        finally:
+            csl.fetch = original
+        self.assertEqual(results, [("https://a.com/good.json", 2)])
+
+
 if __name__ == "__main__":
     unittest.main()
