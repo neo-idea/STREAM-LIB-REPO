@@ -93,6 +93,20 @@ class TestParseConfigMarkers(unittest.TestCase):
         raw = b'\xef\xbb\xbf{"sites": [], "spider": "x"}'
         self.assertEqual(csl.parse_config_markers(raw), 2)
 
+    def test_tolerates_control_chars_in_strings(self):
+        # Real-world TVBox configs often embed raw newlines inside string values.
+        raw = b'{"sites": ["a\nb"], "spider": "x"}'
+        self.assertEqual(csl.parse_config_markers(raw), 2)
+
+    def test_text_fallback_for_near_json(self):
+        # Configs with trailing garbage still count markers via text scan.
+        raw = b'{"sites": [1, 2], "spider": "./s.jar", OOPS'
+        self.assertEqual(csl.parse_config_markers(raw), 2)
+
+    def test_html_page_rejected(self):
+        raw = b"<html><body>sites and spider mentioned</body></html>"
+        self.assertIsNone(csl.parse_config_markers(raw))
+
 
 class TestScoreCandidate(unittest.TestCase):
     def test_markers_only(self):

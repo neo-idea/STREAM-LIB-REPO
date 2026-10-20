@@ -110,15 +110,31 @@ def extract_config_urls(text: str) -> list[str]:
 def parse_config_markers(raw: bytes) -> int | None:
     """Return how many TVBox content markers a JSON payload contains.
 
-    Returns None when the payload is not a JSON object.
+    Returns None when the payload is not a TVBox-looking config. Real-world
+    TVBox configs are often only loosely JSON (raw control characters inside
+    strings, trailing garbage), so parsing degrades gracefully:
+    strict json -> lenient json -> text-level marker scan.
     """
     try:
-        data = json.loads(raw.decode("utf-8-sig"))
-    except (UnicodeDecodeError, json.JSONDecodeError):
+        text = raw.decode("utf-8-sig")
+    except UnicodeDecodeError:
         return None
-    if not isinstance(data, dict):
-        return None
-    return sum(1 for marker in CONTENT_MARKERS if marker in data)
+    data = None
+    for loader in (
+        lambda: json.loads(text),
+        lambda: json.loads(text, strict=False),
+    ):
+        try:
+            data = loader()
+            break
+        except json.JSONDecodeError:
+            continue
+    if isinstance(data, dict):
+        return sum(1 for marker in CONTENT_MARKERS if marker in data)
+    count = sum(
+        1 for marker in CONTENT_MARKERS if re.search(rf'"{marker}"\s*:', text)
+    )
+    return count if count >= 2 else None
 
 
 def score_candidate(markers: int, repo_meta: dict | None) -> int:

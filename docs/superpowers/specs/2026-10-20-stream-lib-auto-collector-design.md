@@ -39,7 +39,7 @@ STREAM-LIB-REPO 仓库目前手工维护 `stream-lib-cat.json`（8 条 TVBox 影
 **硬性门槛**（必须全部满足）：
 
 - URL 可访问（GET，10s 超时，8MB 响应上限）
-- 内容为合法 JSON object
+- 内容为 TVBox 配置（实现修正：真实世界的配置常是「宽松 JSON」——字符串内含未转义控制字符、尾部杂讯等，连示例 svip.json 都过不了严格解析。解析降级链：严格 JSON → `strict=False` 宽松 JSON → 文本级 `"marker":` 键扫描）
 - 含 ≥2 个内容标记：`sites`、`spider`、`lives`、`parses`、`wallpaper`
 
 **加分排序**（降序）：
