@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
@@ -71,6 +72,69 @@ class TestExtractConfigUrls(unittest.TestCase):
     def test_stops_at_delimiters(self):
         text = "（https://a.com/c.json）"
         self.assertEqual(csl.extract_config_urls(text), ["https://a.com/c.json"])
+
+
+class TestParseConfigMarkers(unittest.TestCase):
+    def test_full_config(self):
+        raw = b'{"sites": [], "spider": "x", "lives": [], "parses": [], "wallpaper": "w"}'
+        self.assertEqual(csl.parse_config_markers(raw), 5)
+
+    def test_two_markers_pass_threshold_caller_side(self):
+        raw = b'{"sites": [], "lives": []}'
+        self.assertEqual(csl.parse_config_markers(raw), 2)
+
+    def test_invalid_json_returns_none(self):
+        self.assertIsNone(csl.parse_config_markers(b"not json"))
+
+    def test_non_object_returns_none(self):
+        self.assertIsNone(csl.parse_config_markers(b"[1, 2]"))
+
+    def test_tolerates_bom(self):
+        raw = b'\xef\xbb\xbf{"sites": [], "spider": "x"}'
+        self.assertEqual(csl.parse_config_markers(raw), 2)
+
+
+class TestScoreCandidate(unittest.TestCase):
+    def test_markers_only(self):
+        self.assertEqual(csl.score_candidate(3, None), 3)
+
+    def test_topic_bonus(self):
+        meta = {"name": "Awesome-TVBox", "description": "", "stargazers_count": 0,
+                "pushed_at": datetime.now(timezone.utc).isoformat()}
+        self.assertEqual(csl.score_candidate(2, meta), 3)  # 2 + topic
+
+    def test_stars_bonus(self):
+        meta = {"name": "r", "description": "", "stargazers_count": 99,
+                "pushed_at": datetime.now(timezone.utc).isoformat()}
+        # 1 marker + no topic + round(log10(100)*2) = 1 + 4
+        self.assertEqual(csl.score_candidate(1, meta), 5)
+
+    def test_stale_penalty(self):
+        old = (datetime.now(timezone.utc) - timedelta(days=400)).isoformat()
+        meta = {"name": "r", "description": "", "stargazers_count": 0, "pushed_at": old}
+        self.assertEqual(csl.score_candidate(2, meta), -1)  # 2 - 3, no topic
+
+    def test_repo_without_pushed_at_is_not_penalized(self):
+        meta = {"name": "r", "description": "", "stargazers_count": 0}
+        self.assertEqual(csl.score_candidate(2, meta), 2)
+
+
+class TestBuildName(unittest.TestCase):
+    def test_single_file(self):
+        self.assertEqual(csl.build_name("xmbjm/svip", "svip.json", False), "svip线路")
+
+    def test_multi_file_appends_stem(self):
+        self.assertEqual(csl.build_name("a/b", "config.json", True), "b线路-config")
+
+
+class TestRenderOutput(unittest.TestCase):
+    def test_format_matches_manual_file(self):
+        text = csl.render_output([{"url": "http://fmys.top/fmys.json", "name": "驸马线路"}])
+        self.assertEqual(
+            text,
+            '{\n  "urls": [\n    {\n      "url": "http://fmys.top/fmys.json",\n'
+            '      "name": "驸马线路"\n    }\n  ]\n}\n',
+        )
 
 
 if __name__ == "__main__":

@@ -105,3 +105,53 @@ def extract_config_urls(text: str) -> list[str]:
         if path.endswith(".json") or path.endswith(".bin") or "config" in path:
             out.append(url)
     return out
+
+
+def parse_config_markers(raw: bytes) -> int | None:
+    """Return how many TVBox content markers a JSON payload contains.
+
+    Returns None when the payload is not a JSON object.
+    """
+    try:
+        data = json.loads(raw.decode("utf-8-sig"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    if not isinstance(data, dict):
+        return None
+    return sum(1 for marker in CONTENT_MARKERS if marker in data)
+
+
+def score_candidate(markers: int, repo_meta: dict | None) -> int:
+    """Multi-factor score: markers + topic relevance + stars - staleness."""
+    score = markers
+    if repo_meta:
+        text = f"{repo_meta.get('name') or ''} {repo_meta.get('description') or ''}".lower()
+        if any(keyword in text for keyword in TOPIC_KEYWORDS):
+            score += 1
+        stars = repo_meta.get("stargazers_count") or 0
+        score += round(math.log10(stars + 1) * 2)
+        pushed_at = repo_meta.get("pushed_at")
+        if pushed_at:
+            try:
+                pushed = datetime.fromisoformat(pushed_at.replace("Z", "+00:00"))
+                age = datetime.now(timezone.utc) - pushed
+                if age > timedelta(days=STALE_AFTER_DAYS):
+                    score -= 3
+            except ValueError:
+                pass
+    return score
+
+
+def build_name(repo_full_name: str, file_path: str, multi_file: bool) -> str:
+    """Name a discovered config: repo name + 线路 (+ file stem when repo has several)."""
+    repo_name = repo_full_name.split("/")[-1]
+    name = f"{repo_name}线路"
+    if multi_file:
+        stem = os.path.splitext(os.path.basename(file_path))[0]
+        name = f"{name}-{stem}"
+    return name
+
+
+def render_output(entries: list[dict]) -> str:
+    """Render the final stream-lib-cat-auto.json content."""
+    return json.dumps({"urls": entries}, ensure_ascii=False, indent=2) + "\n"
