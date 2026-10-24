@@ -89,44 +89,40 @@
       "name": "tvbox线路-yt"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Aurecod/Film-TV/HEAD/Abalone.json",
-      "name": "Film-TV线路-Abalone"
-    },
-    {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Aurecod/Film-TV/HEAD/Hunter.json",
-      "name": "Film-TV线路-Hunter"
-    },
-    {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/fswws/tvbox-source/HEAD/tvbox.json",
-      "name": "tvbox-source线路-tvbox"
-    },
-    {
       "url": "https://gh-proxy.com/https://raw.githubusercontent.com/jiusanzhou/tvbox/HEAD/tvbox.json",
       "name": "tvbox线路"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/franksun1211/TVBOX/HEAD/FZL.json",
-      "name": "TVBOX线路-FZL"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/royzhu36/TVBoxConfig/HEAD/tvbox.json",
+      "name": "TVBoxConfig线路"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/franksun1211/TVBOX/HEAD/sun.json",
-      "name": "TVBOX线路-sun"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/XC.json",
+      "name": "TVBox线路-XC"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/shichuanenhui/TvBox/HEAD/fty.json",
-      "name": "TvBox线路"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/ch.json",
+      "name": "TVBox线路-ch"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/xiongjian83/TvBox/HEAD/X.json",
-      "name": "TvBox线路-X"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/pro.json",
+      "name": "TVBox线路-pro"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/cyao2q/files/HEAD/xs.json",
-      "name": "files线路"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/shg.json",
+      "name": "TVBox线路-shg"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/wmszcx816/my-tvbox/HEAD/tvbox.json",
-      "name": "my-tvbox线路-tvbox"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/shg1.json",
+      "name": "TVBox线路-shg1"
+    },
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/shg20240704.json",
+      "name": "TVBox线路-shg20240704"
+    },
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/shg260718.json",
+      "name": "TVBox线路-shg260718"
     },
     {
       "url": "https://gh-proxy.com/https://raw.githubusercontent.com/larry-biu/tvbox-config/HEAD/config.json",
@@ -153,44 +149,56 @@
       "name": "tvbox-config线路-tvbox-pages"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/fswws/tvbox-source/HEAD/tvbox_fast.json",
-      "name": "tvbox-source线路-tvbox_fast"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/fun.json",
+      "name": "TVBox线路-fun"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/hy5528/tvbox/HEAD/og.json",
-      "name": "tvbox线路"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/papa.json",
+      "name": "TVBox线路-papa"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/ne7359/tvurl/HEAD/js.json",
-      "name": "tvurl线路"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/papa11.json",
+      "name": "TVBox线路-papa11"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/s14685/tv/HEAD/xc.json",
-      "name": "tv线路"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/papaback.json",
+      "name": "TVBox线路-papaback"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/xiongjian83/TvBox/HEAD/19.json",
-      "name": "TvBox线路-19"
-    },
-    {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/wmszcx816/my-tvbox/HEAD/lubin776.json",
-      "name": "my-tvbox线路-lubin776"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/aliluya1977/TVBox/HEAD/s.json",
+      "name": "TVBox线路-s"
     },
     {
       "url": "https://gh-proxy.com/https://raw.githubusercontent.com/xmbjm/svip/refs/heads/main/svip.json",
       "name": "svip线路"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/NavyL/tv-sub/HEAD/tv.json",
-      "name": "tv-sub线路-tv"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/huangshaoze37-tech/hotel-tv/HEAD/tvbox.json",
+      "name": "hotel-tv线路"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/NavyL/tv-sub/HEAD/tv.clean.json",
-      "name": "tv-sub线路-tv.clean"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Venus521/tv-cdn/HEAD/tv2.json",
+      "name": "tv-cdn线路-tv2"
     },
     {
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/FreeDTV/FreeD/HEAD/box.json",
-      "name": "FreeD线路"
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Venus521/tv-cdn/HEAD/tvbox.json",
+      "name": "tv-cdn线路-tvbox"
+    },
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Venus521/tv-cdn/HEAD/winbox-config.json",
+      "name": "tv-cdn线路-winbox-config"
+    },
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/hujiangming1/tvbox-source-list/HEAD/tvbox-live.json",
+      "name": "tvbox-source-list线路-tvbox-live"
+    },
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/hujiangming1/tvbox-source-list/HEAD/tvbox-vod.json",
+      "name": "tvbox-source-list线路-tvbox-vod"
+    },
+    {
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/leonardoliu91/tvbox/HEAD/tvbox.json",
+      "name": "tvbox线路"
     }
   ]
 }
